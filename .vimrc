@@ -63,7 +63,7 @@ set colorcolumn=80
 set mouse=a
 runtime ftplugin/man.vim
 let g:ft_man_open_move='vert'
-"set keywordprg=:Man
+set keywordprg=:Man
 
 "=== make undo persistent ==="
 try
@@ -98,9 +98,6 @@ au FocusGained,BufEnter * silent! checktime
 
 "=== source .vimrc on save ==="
 au! BufWritePost ~/.vimrc source % 
-
-"=== open NERDTree if no arguments are provided ===
-au VimEnter * if !argc() | NERDTree | endif
 
 "=================================="
 "       _             _            "
