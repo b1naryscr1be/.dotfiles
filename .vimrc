@@ -61,6 +61,9 @@ set scrolloff=8
 set history=1024
 set colorcolumn=80
 set mouse=a
+runtime ftplugin/man.vim
+let g:ft_man_open_move='vert'
+"set keywordprg=:Man
 
 "=== make undo persistent ==="
 try
@@ -96,7 +99,7 @@ au FocusGained,BufEnter * silent! checktime
 "=== source .vimrc on save ==="
 au! BufWritePost ~/.vimrc source % 
 
-"=== open NERDTree if no arguments are provided ==="
+"=== open NERDTree if no arguments are provided ===
 au VimEnter * if !argc() | NERDTree | endif
 
 "=================================="
@@ -109,12 +112,22 @@ au VimEnter * if !argc() | NERDTree | endif
 "=================================="
 
 call plug#begin()
-	Plug 'morhetz/gruvbox'
-	Plug 'preservim/NERDTree'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
-	Plug 'cdelledonne/vim-cmake'
-	Plug 'dense-analysis/ale'
+
+Plug 'vimwiki/vimwiki'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'dense-analysis/ale'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'mbbill/undotree'
+Plug 'mattn/emmet-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'ekalinin/dockerfile.vim'
+
 call plug#end()
 
 "============================="
@@ -156,7 +169,7 @@ nnoremap <leader>cp		:cprev<CR>
 nnoremap <leader>cw		:cwindow<CR>
 
 "=== NERDTree ==="
-nnoremap <leader>nt 	:NERDTree<CR>
+nnoremap <leader>nt 	:NERDTreeToggle<CR>
 
 "=== fzf ==="
 nnoremap <leader>fb		:Buffers<CR>
@@ -172,4 +185,3 @@ nnoremap <leader>ff		:Files<CR>
 "======================================="
 
 iab xdate <C-r>=strftime("%F %T")<CR>
-
